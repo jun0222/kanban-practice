@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <div>Kanban board</div>
+
+        <input placeholder="Filter cards" />
       </header>
+
+      <div>
+        <section>
+          <h3>TODO</h3>
+
+          <article>朝食をとる🍞</article>
+          <article>SNSをチェックする🐦</article>
+          <article>布団に入る (:3[___]</article>
+        </section>
+
+        <section>
+          <h3>Doing</h3>
+
+          <article>顔を洗う👐</article>
+          <article>歯を磨く🦷</article>
+        </section>
+
+        <section>
+          <h3>Waiting</h3>
+        </section>
+
+        <section>
+          <h3>Done</h3>
+
+          <article>布団から出る (:3っ)っ -=三[＿＿]</article>
+        </section>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
