@@ -9,7 +9,8 @@ export function Column({
     title,
     cards,
     onCardDragStart,
-    onCardDrop
+    onCardDrop,
+    onCardDeleteClick
 }: {
     title?: string
     cards: {
@@ -18,6 +19,7 @@ export function Column({
     }[]
     onCardDragStart?(id: string): void
     onCardDrop?(entered: string | null): void
+    onCardDeleteClick?(id: string): void
 }) {
     const totalCount = cards.length
     const [text, setText] = useState('')
@@ -66,6 +68,7 @@ export function Column({
                     text={text}
                     onDragStart={() => handleCardDragStart(id)}
                     onDragEnd={() => setDraggingCardID(undefined)}
+                    onDeleteClick={() => onCardDeleteClick?.(id)}
                 />
             </Card.DropArea>
             ))}
