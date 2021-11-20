@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components';
 import produce from 'immer';
 import { randomID } from './utils';
+import { api } from './api';
 import * as color from './color';
 import { Header as _Header } from './Header';
 import { Column } from './Column';
@@ -97,6 +98,10 @@ function App() {
   }
 
   const addCard = (columnID: string) => {
+    const column = columns.find(c => c.id === columnID)
+    if (!column) return
+
+    const text = column.text
     const cardID = randomID()
 
     type Columns = typeof columns
@@ -112,6 +117,11 @@ function App() {
         column.text = ''
       }),
     )
+
+    api('POST /v1/cards', {
+      id: cardID,
+      text,
+    })
   }
 
   const [deletingCardID, setDeletingCardID] = useState<string | undefined>(
