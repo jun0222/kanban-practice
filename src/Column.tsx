@@ -17,7 +17,7 @@ export function Column({
     onTextCancel
 }: {
     title?: string
-    cards: {
+    cards?: {
         id: string
         text?: string
     }[]
@@ -29,7 +29,7 @@ export function Column({
     onTextConfirm?(): void
     onTextCancel?(): void
 }) {
-    const totalCount = cards.length
+    const totalCount = cards?.length ?? -1
     const [inputMode, setInputMode] = useState(false)
     const toggleInput = () => setInputMode(v => !v)
     const confirmInput = () => {
@@ -51,7 +51,7 @@ export function Column({
     return (
         <Container>
         <Header>
-            <CountBadge>{totalCount}</CountBadge>
+            {totalCount >= 0 && <CountBadge>{totalCount}</CountBadge>}
             <ColumnName>{title}</ColumnName>
 
             <AddButton onClick={toggleInput} />
@@ -65,7 +65,11 @@ export function Column({
                 onCancel={cancelInput}
             />
         )}
-
+        
+        {!cards ? (
+            <Loading />
+        ) : (
+            <>
         <VerticalScroll>
             {cards.map(({ id, text }, i) => (
             <Card.DropArea
@@ -94,12 +98,21 @@ export function Column({
                 onDrop={() => onCardDrop?.(null)}
             />
         </VerticalScroll>
+        </>
+        )}
         </Container>
     )
 }
 
 const InputForm = styled(_InputForm)`
 padding: 8px;
+`
+
+const Loading = styled.div.attrs({
+    children: 'Loading...',
+})`
+    padding: 8px;
+    font-size: 14px;
 `
 
 const Container = styled.div`
