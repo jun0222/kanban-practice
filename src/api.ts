@@ -27,6 +27,12 @@ export type ReqAndRes = {
             text?: string
         }
     }
+    'DELETE /v1/cards': {
+        req: {
+            id: CardID
+        }
+        res: {}
+    }
     'GET /v1/cardsOrder': {
         req: null
         res: Record<string, CardID | ColumnID>
