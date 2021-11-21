@@ -4,7 +4,6 @@ import produce from 'immer';
 import { randomID, sortBy, reorderPatch } from './utils';
 import { api, ColumnID, CardID } from './api'
 import * as color from './color';
-import { Header as _Header } from './Header';
 import { Column } from './Column';
 import { DeleteDialog } from './DeleteDialog';
 import { Overlay as _Overlay } from './Overlay';
